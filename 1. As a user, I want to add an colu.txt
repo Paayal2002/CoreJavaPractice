@@ -1,0 +1,83 @@
+1. As a user, I want to add an column branch_location so I can efficiently search the branch wise record.
+
+2. As a user, I want to check the total salary expenses on employees.
+
+As a user, I want to see the max salary of employee from test profile.
+
+4. As a user l want to get the average experience level of employees. As a user I want to see the name of highest paid employee.
+
+6. As a user, I want to see the name and experience of lowest paid employee.
+
+7. As a user I want check how many employees are working in company.
+
+As a user I want to see those employee names who are from test profile and having salary more than 25K.
+
+. As a user, I want to shift Radha on support profile.
+
+10. As a user, I want to get the second highest salary of employee.
+
+11 As a user I want to get the second lowest salary of employee.
+
+12. As a user, I want to calculate the average salary of employees those are belongs to dev profile.
+
+13. As a user, I want to see the employee's name and salary who is having lowest experience.
+
+14. As a user, I want to see the employee name who is having lowest age with max salary.
+
+15. As a user, I want to remove all the employee from company.
+
+queries :-------
+
+create database capgemini;
+use capgemini;
+create table employee(id int primary key auto_increment, name varchar(50), profile varchar(40), email varchar(60), salary int , age int, experience int);
+select * from employee;
+INSERT INTO employee
+     (name, profile, email, salary, age, experience)
+     VALUES
+     ('rani', 'dev', 'rani@gmail.com', 1100, 43, 27),
+     ('raj', 'test', 'raj@gmail.com', 21000, 33, 17),
+     ('radha', 'test', 'radha@gmail.com', 26000, 38, 21),
+     ('raj', 'dev', 'raj12@gmail.com', 51000, 32, 12),
+     ('john', 'dev', 'john@gmail.com', 51000, 39, 27);
+select * from employee;
+alter table employee add branch_location varchar(50);
+update employee set branch_location ='pune' where id=1;
+update employee set branch_location ='banglore' where id=2;
+update employee set branch_location ='hydrabad' where id=3;
+update employee set branch_location ='nashik' where id=4;
+update employee set branch_location ='latur' where id=5;
+
+select SUM(salary) AS total_salary_expence from employee;
+
+select MAX(salary) AS max_salary_expence from employee;
+
+select MAX(salary) AS max_salary_expence from employee where profile ='test';
+
+select AVG(Experience) from employee;
+
+select max(salary) from employee;
+
+select name, salary from employee where salary =(select min(salary) from employee);
+
+select count(name) from employee;
+
+select name, salary from employee where salary <25000;
+
+select name, salary from employee where salary >25000;
+
+update employee set profile = 'support' where name ='radha';
+
+select name, salary from employee order by salary desc limit 1 offset1;
+
+ select name, salary from employee order by salary asc limit 1 offset 1;
+
+select AVG(salary) from employee where profile = 'dev';
+
+select name, salary from employee order by salary desc limit 1;
+
+mysql> select name, salary from employee order by salary asc limit 1;
+
+select name, age, salary from employee order by salary desc, age asc limit 1;
+
+truncate table employee;
